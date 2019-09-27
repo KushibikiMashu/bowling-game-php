@@ -4,15 +4,24 @@ namespace App;
 
 Class BowlingGame
 {
-    private $score = 0;
+    private $rolls       = [];
+    private $currentRoll = 0;
 
     public function roll(int $pins)
     {
-        $this->score += $pins;
+        $this->rolls[$this->currentRoll++] = $pins;
     }
 
-    public function score()
+    public function score(): int
     {
-        return $this->score;
+        $score = 0;
+        for ($i = 0; $i < count($this->rolls); $i++) {
+            if ($this->rolls[$i] + $this->rolls[$i + 1] === 10) {
+                $score += $this->rolls[$i] + $this->rolls[$i + 2];
+            } else {
+                $score += $this->rolls[$i];
+            }
+        }
+        return $score;
     }
 }

@@ -23,7 +23,7 @@ Class BowlingGameTest extends TestCase
      */
     public function allGutter()
     {
-        $this->makeRoll(0, 20);
+        $this->rollMany(20, 0);
         $actual = $this->bowlingGame->score();
         $this->assertSame(0, $actual);
     }
@@ -33,14 +33,28 @@ Class BowlingGameTest extends TestCase
      */
     public function allOnePin()
     {
-        $this->makeRoll(1, 20);
+        $this->rollMany(20, 1);
         $actual = $this->bowlingGame->score();
         $this->assertSame(20, $actual);
     }
 
-    private function makeRoll(int $pins, int $times)
+    /**
+     * @test
+     */
+    public function oneSpare()
     {
-        for ($i = 0; $i < $times; $i++) {
+        $this->bowlingGame->roll(5);
+        $this->bowlingGame->roll(5);
+        $this->bowlingGame->roll(3);
+
+        $this->rollMany(17, 0);
+        $actual = $this->bowlingGame->score();
+        $this->assertSame(16, $actual);
+    }
+
+    private function rollMany(int $n, int $pins)
+    {
+        for ($i = 0; $i < $n; $i++) {
             $this->bowlingGame->roll($pins);
         }
     }
