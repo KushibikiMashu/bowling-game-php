@@ -2,8 +2,11 @@
     "name": "matthew/bowling-game-php",
     "authors": [
         {
-            "name": "KushibikiMashu",
+            "name": "KushibikiMashu"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
 }
