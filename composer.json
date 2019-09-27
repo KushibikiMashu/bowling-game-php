@@ -1,0 +1,9 @@
+{
+    "name": "matthew/bowling-game-php",
+    "authors": [
+        {
+            "name": "KushibikiMashu",
+        }
+    ],
+    "require": {}
+}
