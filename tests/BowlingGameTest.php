@@ -21,11 +21,9 @@ Class BowlingGameTest extends TestCase
     /**
      * @test
      */
-    public function 全部ガーター()
+    public function allGutter()
     {
-        for ($i = 0; $i < 20; $i++) {
-            $this->bowlingGame->roll(0);
-        }
+        $this->makeRoll(0, 20);
         $actual = $this->bowlingGame->score();
         $this->assertSame(0, $actual);
     }
@@ -33,12 +31,17 @@ Class BowlingGameTest extends TestCase
     /**
      * @test
      */
-    public function 全部一本倒す()
+    public function allOnePin()
     {
-        for ($i = 0; $i < 20; $i++) {
-            $this->bowlingGame->roll(1);
-        }
+        $this->makeRoll(1, 20);
         $actual = $this->bowlingGame->score();
         $this->assertSame(20, $actual);
+    }
+
+    private function makeRoll(int $pins, int $times)
+    {
+        for ($i = 0; $i < $times; $i++) {
+            $this->bowlingGame->roll($pins);
+        }
     }
 }
