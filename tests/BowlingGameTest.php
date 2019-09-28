@@ -43,11 +43,10 @@ Class BowlingGameTest extends TestCase
      */
     public function oneSpare()
     {
-        $this->bowlingGame->roll(5);
-        $this->bowlingGame->roll(5);
+        $this->rollSpare();
         $this->bowlingGame->roll(3);
-
         $this->rollMany(17, 0);
+
         $actual = $this->bowlingGame->score();
         $this->assertSame(16, $actual);
     }
@@ -57,5 +56,11 @@ Class BowlingGameTest extends TestCase
         for ($i = 0; $i < $n; $i++) {
             $this->bowlingGame->roll($pins);
         }
+    }
+
+    private function rollSpare()
+    {
+        $this->bowlingGame->roll(5);
+        $this->bowlingGame->roll(5);
     }
 }
