@@ -3,12 +3,6 @@
 use PHPUnit\Framework\TestCase;
 use App\BowlingGame;
 
-// 全部ガーター
-// 全部１点
-// 一回スペア
-// 一回ストライク
-// 全部ストライク
-
 Class BowlingGameTest extends TestCase
 {
     private $bowlingGame;
@@ -64,6 +58,16 @@ Class BowlingGameTest extends TestCase
         $actual = $this->bowlingGame->score();
         $this->assertSame(24, $actual);
     }
+
+    /**
+     * @test
+     */
+    public function perfectGame()
+    {
+        $this->rollMany(12,10);
+        $actual = $this->bowlingGame->score();
+        $this->assertSame(300, $actual);
+     }
 
     private function rollMany(int $n, int $pins)
     {
