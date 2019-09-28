@@ -51,6 +51,20 @@ Class BowlingGameTest extends TestCase
         $this->assertSame(16, $actual);
     }
 
+    /**
+     * @test
+     */
+    public function oneStrike()
+    {
+        $this->rollStrike();
+        $this->bowlingGame->roll(3);
+        $this->bowlingGame->roll(4);
+        $this->rollMany(16, 0);
+
+        $actual = $this->bowlingGame->score();
+        $this->assertSame(24, $actual);
+    }
+
     private function rollMany(int $n, int $pins)
     {
         for ($i = 0; $i < $n; $i++) {
@@ -62,5 +76,10 @@ Class BowlingGameTest extends TestCase
     {
         $this->bowlingGame->roll(5);
         $this->bowlingGame->roll(5);
+    }
+
+    private function rollStrike()
+    {
+        $this->bowlingGame->roll(10);
     }
 }
